@@ -40,12 +40,13 @@ public class Tabela extends JFrame {
 		table = new JTable();
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{tp.usuario[0].getCodigo(), tp.usuario[0].getNome(), tp.usuario[0].getTelefone(), tp.usuario[0].getEmail(), tp.usuario[0].getRua()},
-				{tp.usuario[1].getCodigo(), tp.usuario[1].getNome(), tp.usuario[1].getTelefone(), tp.usuario[1].getEmail(), tp.usuario[1].getRua()},
-				{tp.usuario[2].getCodigo(), tp.usuario[2].getNome(), tp.usuario[2].getTelefone(), tp.usuario[2].getEmail(), tp.usuario[2].getRua()},
-				{tp.usuario[3].getCodigo(), tp.usuario[3].getNome(), tp.usuario[3].getTelefone(), tp.usuario[3].getEmail(), tp.usuario[3].getRua()},
-				{tp.usuario[4].getCodigo(), tp.usuario[4].getNome(), tp.usuario[4].getTelefone(), tp.usuario[4].getEmail(), tp.usuario[4].getRua()},
+			new String[][] {
+				{"0",tp.mostrarNome(0),tp.mostrarTelefone(0),tp.mostrarEmail(0),tp.mostrarRua(0)},
+				{"0",tp.mostrarNome(1),tp.mostrarTelefone(1),tp.mostrarEmail(1),tp.mostrarRua(1)},
+				{"0",tp.mostrarNome(2),tp.mostrarTelefone(2),tp.mostrarEmail(2),tp.mostrarRua(2)},
+				{"0",tp.mostrarNome(3),tp.mostrarTelefone(3),tp.mostrarEmail(3),tp.mostrarRua(3)},
+				{"0",tp.mostrarNome(4),tp.mostrarTelefone(4),tp.mostrarEmail(4),tp.mostrarRua(4)},
+				
 			},
 			new String[] {
 				"Codigo", "Nome", "Telefone", "Email", "Rua"

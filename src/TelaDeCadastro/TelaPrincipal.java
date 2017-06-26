@@ -32,8 +32,10 @@ public class TelaPrincipal extends JFrame {
 	private JTextField txtCelular;
 	private JTextField txtTelefone;
 	static int contador = 0;
-	Cadastro[] usuario = new Cadastro[5];
+	public static Cadastro[] usuario = new Cadastro[5];
 	private JTextField txtCodigo;
+	
+
 
 	/**
 	 * Launch the application.
@@ -55,6 +57,7 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+//		usuario[contador] = new Cadastro();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 705, 433);
 		contentPane = new JPanel();
@@ -200,41 +203,24 @@ public class TelaPrincipal extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (contador < 5) {
-					txtCodigo.setText(Integer.toString(contador));
-					System.out.println(txtCodigo);
-					usuario[contador] = new Cadastro();
-					usuario[contador].setNome(txtNome.getText());
-					usuario[contador].setCelular(txtCelular.getText());
-					usuario[contador].setTelefone(txtTelefone.getText());
-					usuario[contador].setBairro(txtBairro.getText());
-					usuario[contador].setBairro(txtBairro.getText());
-					usuario[contador].setComplemento(txtComplemento.getText());
-					usuario[contador].setCpf(txtCpf.getText());
-					usuario[contador].setCodigo(Integer.parseInt(txtCodigo.getText()));
-
-					contador++;
-				} else {
-					JOptionPane.showMessageDialog(null, "Só pode salvar 5 usuarios");
-				}
+			if(contador < 5){
+				salvar(contador);
+				contador++;
+			} else {
+				JOptionPane.showMessageDialog(null, "Só pode salvar 5 usuarios");
+			}
 
 			}
 		});
 		btnSalvar.setBounds(249, 336, 117, 25);
 		contentPane.add(btnSalvar);
 
-		JButton btnExcluir = new JButton("Excluir");
+		JButton btnExcluir = new JButton("Ver Tabela");
 		btnExcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				usuario[0] = new Cadastro();
-				usuario[0].setNome("");
-				usuario[0].setCelular("");
-				usuario[0].setTelefone("");
-				usuario[0].setBairro("");
-				usuario[0].setBairro("");
-				usuario[0].setComplemento("");
-				usuario[0].setCpf("");
+				Tabela tabela = new Tabela();
+				tabela.setVisible(true);
 			}
 		});
 		btnExcluir.setBounds(389, 336, 117, 25);
@@ -244,17 +230,56 @@ public class TelaPrincipal extends JFrame {
 		btnAtualizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				usuario[contador] = new Cadastro();
-				usuario[contador].setNome(txtNome.getText());
-				usuario[contador].setCelular(txtCelular.getText());
-				usuario[contador].setTelefone(txtTelefone.getText());
-				usuario[contador].setBairro(txtBairro.getText());
-				usuario[contador].setBairro(txtBairro.getText());
-				usuario[contador].setComplemento(txtComplemento.getText());
-				usuario[contador].setCpf(txtCpf.getText());
+				atualizar(Integer.parseInt(txtCodigo.getText()));
 			}
 		});
 		btnAtualizar.setBounds(532, 336, 117, 25);
 		contentPane.add(btnAtualizar);
+	}
+	public void salvar(int contador){
+		
+			txtCodigo.setText(Integer.toString(contador));
+			System.out.println(txtCodigo);
+			usuario[contador]= new Cadastro();
+			usuario[contador].setNome(txtNome.getText());
+			usuario[contador].setCelular(txtCelular.getText());
+			usuario[contador].setTelefone(txtTelefone.getText());
+			usuario[contador].setBairro(txtBairro.getText());
+			usuario[contador].setBairro(txtBairro.getText());
+			usuario[contador].setComplemento(txtComplemento.getText());
+			usuario[contador].setCpf(txtCpf.getText());
+			usuario[contador].setCodigo(Integer.parseInt(txtCodigo.getText()));
+			JOptionPane.showMessageDialog(null, mostrarNome(contador));
+			contador++;
+		
+	}//termina aqui o salvar
+	public void atualizar(int contador){
+		usuario[contador].setNome(txtNome.getText());
+		usuario[contador].setCelular(txtCelular.getText());
+		usuario[contador].setTelefone(txtTelefone.getText());
+		usuario[contador].setBairro(txtBairro.getText());
+//		usuario[contador].setDataNascimento();
+		usuario[contador].setComplemento(txtComplemento.getText());
+		usuario[contador].setCpf(txtCpf.getText());
+		usuario[contador].setRua(txtRua.getText());
+		usuario[contador].setEmail(txtEmail.getText());
+		usuario[contador].setNumero(txtNumero.getText());
+	}
+	public String mostrarNome(int contador){
+		
+		return usuario[contador].getNome();
+		
+	}
+	public String mostrarTelefone(int contador){
+		return usuario[contador].getTelefone();
+		
+	}
+	public String mostrarRua(int contador){
+		return usuario[contador].getRua();
+		
+	}
+	public String mostrarEmail(int contador){
+		return usuario[contador].getEmail();
+		
 	}
 }
